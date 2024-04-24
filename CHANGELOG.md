@@ -2,7 +2,7 @@
 
 ## Version: 0.0.0 => 0.1.0
 
-Date: 24 abri 2024 - launch 🚀
+Date: 24 abr 2024 - launch 🚀
 
 ### Feat:
 
