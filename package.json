@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.11",
+    "graphql": "^16.8.1",
     "firebase": "^10.11.0",
     "firestone": "^0.1.1",
     "react": "^18.2.0",
