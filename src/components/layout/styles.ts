@@ -6,6 +6,7 @@ export const HeaderContainer = styled.div`
   color: #fff;
   width: 100%;
   padding: 15px 0px;
+  min-width: 320px;
 `;
 
 export const TitleHeader = styled.h1`
