@@ -1,14 +1,11 @@
 import { Provider } from 'react-redux';
 import store from './store';
-import { Repositories } from './components/Repositories';
+import { Repositories } from './components/pages/Repositories';
 
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <h1>GitHub Repositories</h1>
-        <Repositories />
-      </div>
+      <Repositories />
     </Provider>
   );
 }
