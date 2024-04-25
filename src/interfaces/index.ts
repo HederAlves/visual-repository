@@ -42,7 +42,7 @@ export interface HeaderProps {
 }
 
 export interface RootState {
-    repositories: Repository[];
+    repositories: RepositoryState;
     searchQuery: string;
     modal: {
         isOpen: boolean;
@@ -76,4 +76,46 @@ export interface ModalProps {
     firstData: number;
     secondData: number;
     thirdData: number;
+}
+
+export interface RepositoryState {
+    repositories: Repository[];
+    loading: boolean;
+    error: boolean;
+}
+
+export interface RepositoryAction {
+    type: string;
+    payload?: Repository;
+}
+
+export interface FetchRepositoriesSuccess {
+    type: 'FETCH_REPOSITORIES_SUCCESS';
+    payload: Repository[];
+}
+
+export interface FetchRepositoriesFailure {
+    type: 'FETCH_REPOSITORIES_FAILURE';
+    payload: string;
+}
+
+export interface RepositoriesAction {
+    type: string;
+    payload: Repository[];
+}
+
+export interface State {
+    repositories: unknown[];
+    loading: boolean;
+    error: string | null;
+}
+
+export const initialState: State = {
+    repositories: [],
+    loading: false,
+    error: null,
+};
+
+export interface FetchRepositoriesRequest {
+    type: 'FETCH_REPOSITORIES_REQUEST';
 }
