@@ -73,7 +73,7 @@ export interface Action {
 }
 
 export interface State {
-    repositories: unknown[];
+    repositories: Repository[];
     loading: boolean;
     error: string | null;
 }
