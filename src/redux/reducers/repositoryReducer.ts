@@ -1,4 +1,10 @@
-import { RepositoriesAction, State, initialState } from "../../interfaces";
+import { RepositoriesAction, State } from "../../interfaces";
+
+const initialState: State = {
+    repositories: [],
+    loading: false,
+    error: null,
+};
 
 const repositoriesReducer = (state: State = initialState, action: RepositoriesAction): State => {
     switch (action.type) {

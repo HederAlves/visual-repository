@@ -1,6 +1,6 @@
 import { Action, ModalState } from "../../interfaces";
 
-export const initialState: ModalState = {
+const initialState: ModalState = {
     isOpen: false,
     selectedRepository: null,
 };
