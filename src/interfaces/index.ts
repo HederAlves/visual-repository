@@ -1,3 +1,8 @@
+export interface HeaderProps {
+    searchTerm: string;
+    onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 export interface Collaborator {
     node: {
         name: string;
@@ -19,6 +24,7 @@ export interface IssueConnection {
 export interface PullRequestConnection {
     totalCount: number;
 }
+
 export interface Repository {
     name: string;
     description: string;
@@ -36,9 +42,20 @@ export interface RepositoryListProps {
     onRepositoryClick: (repository: Repository) => void;
 }
 
-export interface HeaderProps {
-    searchTerm: string;
-    onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+export interface Repository {
+    name: string;
+    description: string;
+}
+
+export interface RepositoryState {
+    repositories: Repository[];
+    loading: boolean;
+    error: boolean;
+}
+
+export interface RepositoriesAction {
+    type: string;
+    payload: Repository[];
 }
 
 export interface RootState {
@@ -55,9 +72,10 @@ export interface Action {
     type: string;
 }
 
-export interface Repository {
-    name: string;
-    description: string;
+export interface State {
+    repositories: unknown[];
+    loading: boolean;
+    error: string | null;
 }
 
 export interface ModalState {
@@ -78,15 +96,8 @@ export interface ModalProps {
     thirdData: number;
 }
 
-export interface RepositoryState {
-    repositories: Repository[];
-    loading: boolean;
-    error: boolean;
-}
-
-export interface RepositoryAction {
-    type: string;
-    payload?: Repository;
+export interface FetchRepositoriesRequest {
+    type: 'FETCH_REPOSITORIES_REQUEST';
 }
 
 export interface FetchRepositoriesSuccess {
@@ -97,25 +108,4 @@ export interface FetchRepositoriesSuccess {
 export interface FetchRepositoriesFailure {
     type: 'FETCH_REPOSITORIES_FAILURE';
     payload: string;
-}
-
-export interface RepositoriesAction {
-    type: string;
-    payload: Repository[];
-}
-
-export interface State {
-    repositories: unknown[];
-    loading: boolean;
-    error: string | null;
-}
-
-export const initialState: State = {
-    repositories: [],
-    loading: false,
-    error: null,
-};
-
-export interface FetchRepositoriesRequest {
-    type: 'FETCH_REPOSITORIES_REQUEST';
 }
