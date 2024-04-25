@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal, openModal } from '../../redux/actions/actions';
-import { GET_REPOSITORIES } from '../../graphql/queries';
 import { Repository } from '../../interfaces';
 import { RootState } from '../../interfaces';
 import { TableRepositories } from '../repositories/TableRepositories';
 import { Modal } from '../repositories/ModalRepositories';
 import { Header } from '../layout/header';
+import { fetchRepositories } from '../../redux/actions/actionsRepositories';
+import { closeModal, openModal } from '../../redux/actions/actionsModal';
+import { UnknownAction } from 'redux';
 
 export function Repositories() {
   const dispatch = useDispatch();
-  const { loading, error, data } = useQuery(GET_REPOSITORIES);
-  const [searchTerm, setSearchTerm] = useState('');
+  const { repositories, loading, error } = useSelector((state: RootState) => state.repositories);
   const { isOpen, selectedRepository } = useSelector((state: RootState) => state.modal);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    dispatch(fetchRepositories() as unknown as UnknownAction);
+  }, [dispatch]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -27,13 +31,13 @@ export function Repositories() {
     dispatch(closeModal());
   };
 
-  if (loading) return <p>Carregando...</p>;
-  if (error) return <p>Ocorreu um erro!</p>;
-
-  const filteredRepositories = data.viewer.repositories.nodes.filter(
+  const filteredRepositories = repositories.filter(
     (repository: Repository) =>
       repository.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Ocorreu um erro!</p>;
 
   return (
     <>
