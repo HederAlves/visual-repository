@@ -7,14 +7,14 @@ export const GET_REPOSITORIES = gql`
         nodes {
           name
           description
-					collaborators {
+	  collaborators {
             edges {
               node {
                 name
               }
             }
           }
-					defaultBranchRef {
+	  defaultBranchRef {
             target {
               ... on Commit {
                 history {
